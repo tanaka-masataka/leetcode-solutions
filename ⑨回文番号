@@ -1,0 +1,17 @@
+#文字列は余分なメモリを使うため数値のまま解く
+class Solution(object):
+    def isPalindrome(self, x):
+
+　　　　#数値のため負の数だめ、回文のため末尾０はだめ、単体0はok
+        if x < 0 or (x %10 == 0 and x !=0) :
+            return False
+       #逆順の数値を構築するための器のy
+        y = 0
+        #「前半と後半が分かれるまで」の処理
+        while x > y :
+            #末尾から1桁ずつ追加
+            y = y*10 + x % 10
+            #元の数を1桁ずつ削っていく
+            x //= 10
+
+        return x == y//10 or x == y
