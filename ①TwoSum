@@ -1,0 +1,14 @@
+class Solution :
+    def twoSum(self, nums, target):
+        number_map = {}
+　　　　# 配列を走査しながら、ターゲットとの差分がすでに記録されているかを確認
+        for i, num in enumerate(nums): 
+            diff = target - nums  # 現在の数値とターゲットとの差
+
+　　　　　 # 差分がすでに記録されていれば、解が見つかったことになる
+            if diff in number_map :
+                return [number_map[diff], i]
+            # 現在の数値を記録
+            number_map[num] = i
+　　　　# 解が見つからない場合
+        return None
