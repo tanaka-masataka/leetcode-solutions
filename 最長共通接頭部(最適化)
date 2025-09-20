@@ -1,0 +1,15 @@
+class Solution:
+    def longestCommonPrefix(self, strs):
+　　　　#空リストじゃない確認
+        if not strs:
+            return ""
+        #辞書順の最初と最後の文字列を比較することで、全体の最長共通接頭辞がわかる。
+        strs.sort()
+        first, last = strs[0], strs[-1]
+        #インデックスをカウントする
+        i = 0
+        #文字列の長さを超えないようにしつつ文字を確認していく。
+        while i < len(first) and i < len(last) and first[i] == last[i]:
+            i += 1
+        #共通接頭部をスライスで取得して返す
+        return first[:i]
