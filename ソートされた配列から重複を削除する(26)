@@ -1,0 +1,13 @@
+class Solution(object):  # LeetCode 形式のクラス定義。Solution クラスを作成。
+    def removeDuplicates(self, nums):  # ソート済みの配列 nums から重複を取り除くメソッド。
+        if not nums:  # nums が空リストや None の場合
+            return 0  # 重複を取り除く必要がないので、長さ0を返す。
+
+        i = 0  # 重複のない要素を書き込むインデックス（現在のユニーク要素の末尾）
+
+        for j in range(1, len(nums)):  # j は走査用のインデックス。1 からスタートして nums をスキャン。
+            if nums[j] != nums[i]:  # 現在の値が直前のユニーク値と異なる（重複でない）場合
+                i += 1  # 書き込みインデックスを1進める（次のユニーク位置へ）
+                nums[i] = nums[j]  # 新しいユニーク値を i の位置に書き込む（上書き）
+
+        return i + 1  # ユニークな要素の個数はインデックス i に1を足した数（0ベースなので）
