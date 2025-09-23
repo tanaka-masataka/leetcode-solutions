@@ -1,0 +1,15 @@
+class Solution(object):  # Solution というクラスを定義。LeetCodeなどの形式に準拠。
+    def removeElement(self, nums, val):  # nums から val の値をすべて削除するメソッドを定義。
+        if not nums:  # nums が空（None や 空リスト）の場合
+            return 0  # 要素がないので長さ0を返す。
+
+        i = 0  # ループのためのインデックス変数 i を初期化。
+        while i < len(nums):  # i がリストの長さより小さい間ループを継続。
+            if nums[i] == val:  # 現在の要素が削除対象の val と一致する場合
+                del nums[i]  # 一致する要素をリストから削除。
+                # del するとその位置の要素が消えて次の要素が左に詰められるので、i は増やさない。
+            else:
+                i += 1  # val と一致しなければ次の要素へ進むため i をインクリメント。
+                pass  # pass は何もしない文。ここでは不要だが、明示的に空の処理を書いている。
+
+        return len(nums)  # 最終的に削除後の nums の長さ（残った要素の数）を返す。
