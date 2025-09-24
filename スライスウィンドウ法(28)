@@ -1,0 +1,17 @@
+class Solution(object): 
+    def strStr(self, haystack, needle):  
+        
+        if needle == "":  
+            # needle が空文字だった場合は 0 を返す
+            return 0
+
+        # haystack を1文字ずつスライドさせて、needle と同じ長さの部分文字列を比較する
+        # ループは i = 0 〜 len(haystack) - len(needle) +1(最後のインデックスまで到達させる) まで
+        for i in range(len(haystack) - len(needle) + 1):  
+            # haystack の i番目から needle の長さだけスライスして、needle と比較 探したい長さは一定だから i+
+            if haystack[i:i+len(needle)] == needle:  
+                # 一致したらその位置（インデックス）を返す
+                return i
+
+        # ループをすべて終えても一致しなければ、needle は haystack に含まれていない
+        return -1
