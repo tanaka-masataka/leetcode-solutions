@@ -1,0 +1,14 @@
+class Solution(object):
+    def searchInsert(self, nums, target):
+        if not nums :
+            return 0　# もしリストが空だったら、0番目に挿入するしかないので 0 を返す
+
+        for i in range(len(nums)):　 # リストの先頭から順番にインデックス 'i' を使ってループする。
+            if nums[i] >= target  : # 現在の要素が target 以上になった時点で、そこが挿入すべき位置
+                return i # 同じ値があればその位置に、なければその直前の位置に入るべき。
+
+        return len(nums)
+# ループ内で一度も target 以上の値が出なかった = target は最大。
+# この場合、リストの末尾（len(nums)）に挿入する。
+
+        
