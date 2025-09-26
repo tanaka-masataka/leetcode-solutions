@@ -1,0 +1,8 @@
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        #空白ごとに分ける
+        splited = s.split()
+        #最後のワードを選択
+        last_word = splited[-1]
+        #そのワードの長さを返す
+        return len(last_word)
