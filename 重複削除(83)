@@ -1,0 +1,14 @@
+class Solution(object):
+  def deleteDuplicates(self, head)
+    current = head
+    #currentとその次のノードがある間は繰り返す
+    while current and current.next :
+      #重複していた時
+      if current.val == current.next.val :
+        #重複をスキップ
+        current.next = current.next.next :
+      else:
+        #次のノードに進む
+        current = current.next
+    return head
+        
