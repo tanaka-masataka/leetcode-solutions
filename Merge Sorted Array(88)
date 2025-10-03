@@ -1,0 +1,19 @@
+class Solution(object) :
+  def merge(self, nums1, m, nums2, n):
+    #インデックスポインタを作る(nums1の0後ろから上書きしていく)
+    i = m - 1
+    j = n - 1
+    k = m + n - 1
+    #nums1の箱に入れていくからjが0未満になったら終了
+    while j >= 0 :
+      #iのインデックスがまだ残っていてnums[i]が多きければnums1[k](一番後ろのインデックス)に入れていく
+      if i >= 0 and nums1[i] > nums2[j] :
+        nums1[k] = nums1[i]
+        #一個前のインデックスにさがる
+        i -= 1
+      #nums2[j]の方が大きい場合
+      else :
+        nums1[k] = nums2[j]
+        j -= 1
+      #上書きしたら一個前のインデックスにさがる
+      k -= 1
