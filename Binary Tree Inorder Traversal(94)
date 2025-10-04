@@ -1,0 +1,25 @@
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        # ノードの値 val と、左の子 left、右の子 right を初期化  
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution(object):
+    def inorderTraversal(self, root):
+      　# 結果をためるリストを作成  
+        result = []
+        # 再帰的に木をたどる関数 dfs（深さ優先探索の一種）  
+        def dfs(node) :
+            if not node :
+                return
+            #左の子を先に処理（再帰呼び出し）  
+            dfs(node.left)
+            # 自分の値を結果リストに追加  
+            result.append(node.val)
+            # 右の子を最後に処理（再帰呼び出し）  
+            dfs(node.right)
+
+        dfs(root)
+        # ルートから dfs をスタートして木全体を処理  
+        return result
+        
