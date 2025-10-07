@@ -1,10 +1,13 @@
-class Solution(object):
-    def isSameTree(self, p, q):
-        if not p and not q:Same Tree
-            return True
-        if not p or not q:
-            return False
-        if p.val != q.val:
-            return False
-    
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+def isSameTree(self, p, q):
+    # pとqの両方がNone（空のノード）なら、同じ木の部分とみなしてTrueを返す
+    if not p and not q:
+        return True
+    # pかqのどちらか一方だけがNoneなら、片方だけ枝がある状態で違うのでFalseを返す
+    if not p or not q:
+        return False
+    # pとqのノードの値が違ったら、木の内容が違うのでFalseを返す
+    if p.val != q.val:
+        return False
+    # 左の子ノード同士と右の子ノード同士を再帰的に比較して
+    # 両方とも同じならTrueを返し、どちらか違えばFalseを返す
+    return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
