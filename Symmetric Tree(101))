@@ -1,0 +1,26 @@
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution(object):
+    def isSymmetric(self, root):
+        if not root:  # 木が空なら左右対称とみなす
+            return True
+
+        def isMirror(t1, t2):  # 左右の部分木が鏡像かどうかを判定する再帰関数
+            if not t1 and not t2:  # 両方Noneなら鏡像としてOK
+                return True
+            if not t1 or not t2:   # 片方だけNoneなら形が違う → 鏡像じゃない
+                return False
+            # 両方ノードがある場合
+            # 値が等しいことを確認
+            # t1の左部分木とt2の右部分木が鏡像かを再帰的にチェック
+            # t1の右部分木とt2の左部分木が鏡像かを再帰的にチェック
+            return (t1.val == t2.val and
+                    isMirror(t1.left, t2.right) and
+                    isMirror(t1.right, t2.left))
+        
+        # 木の左右の部分木が鏡像かどうかを判定して結果を返す
+        return isMirror(root.left, root.right)
