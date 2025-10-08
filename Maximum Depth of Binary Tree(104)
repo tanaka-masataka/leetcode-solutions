@@ -1,0 +1,21 @@
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution(object):
+    def maxDepth(self, root):
+        if not root:
+            return 0
+        else:
+            # 再帰的に左部分木の深さを計算
+            # root.left が None の場合は、ここで 0 を返す
+            left_depth = self.maxDepth(root.left)
+
+            # 再帰的に右部分木の深さを計算
+            right_depth = self.maxDepth(root.right)
+
+            # 左右の深さのうち大きい方を選んで、+1 することで
+            # 「現在のノードをルートとした木の最大の深さ」を返す
+            # ここでの +1 は「今見ているこのノード自身の分の深さ」
+            return max(left_depth, right_depth) + 1
