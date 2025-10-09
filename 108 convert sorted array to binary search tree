@@ -1,0 +1,25 @@
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        # ベースケース：配列が空なら、もう木を作れないのでNoneを返す
+        if not nums:
+            return None  
+
+        # 中央のインデックスを計算（切り捨て除算）
+        # 中央をルートにすることでBSTのバランスが取れる
+        mid = len(nums) // 2
+
+        # 新しいノードを作成。値は中央の値
+        root = TreeNode(nums[mid])  
+
+        # ここから再帰的に左部分木を作る
+        # nums[:mid]は中央より左の部分配列
+        # 再帰呼び出しなので、自動的に同じ処理を繰り返し、部分木を作る
+        root.left = self.sortedArrayToBST(nums[:mid])
+
+        # 同じく右部分木を作る
+        # nums[mid+1:]は中央より右の部分配列
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+
+        # 最後に作成した部分木（ノード）を返す
+        # この返り値が親ノードのleft/rightにセットされる
+        return root
