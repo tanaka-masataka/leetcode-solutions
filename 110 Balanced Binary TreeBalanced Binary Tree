@@ -1,0 +1,38 @@
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val          # ノードの値
+        self.left = left        # 左の子ノード（TreeNodeまたはNone）
+        self.right = right      # 右の子ノード（TreeNodeまたはNone）
+
+class Solution:
+    def isBalanced(self, root):
+        # check関数は、nodeを引数に受け取って、その部分木の高さを返す関数です。
+        # ただし、バランスが崩れている場合は-1を返して、それを伝播させます。
+        def check(node):
+            # 1. ノードがNone（葉の子の部分）なら高さ0を返す
+            if not node:
+                return 0
+
+            # 2. 左部分木の高さを再帰的に取得
+            left = check(node.left)
+            # もし左部分木が不均衡なら（-1が返ってきたら）そのまま-1を返す（早期リターン）
+            if left == -1:
+                return -1
+
+            # 3. 右部分木の高さを再帰的に取得
+            right = check(node.right)
+            # もし右部分木が不均衡なら同様に-1を返す
+            if right == -1:
+                return -1
+
+            # 4. 左右の高さの差が2以上なら不均衡と判定
+            if abs(left - right) > 1:
+                return -1
+
+            # 5. バランスが取れているなら、現在のノードの高さを返す
+            # 部分木の高さは「左右の高さの大きい方＋1」
+            return max(left, right) + 1
+
+        # check(root)の結果が-1でなければバランスが取れているのでTrueを返す
+        # -1ならFalse
+        return check(root) != -1
